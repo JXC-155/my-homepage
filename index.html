@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  scroll-behavior: smooth;>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
+    <script>
+        // 导航栏滚动效果：滚动时背景变白、加阴影
+        const navbar =document.getElementById('navbar');
+        window.addEventListener('scroll',()=>{
+            if(window.scrollY>50){
+                navbar.style.backgroundColor = '#fff';
+                navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+            }else{
+                navbar.style.backgroundColor = 'rgba(255,255,255,0.95)';
+                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+            }
+        })
+        // 锚点平滑滚动（CSS其实已经加了，这里双重保险）
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <!--1、导航栏-->
